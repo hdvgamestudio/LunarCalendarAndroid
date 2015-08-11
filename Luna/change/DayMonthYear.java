@@ -74,6 +74,6 @@ public class DayMonthYear {
 	}
 
 	public void printInfo() {
-		System.out.println(this.day + "\t" + this.month + "\t" + this.year);
+		System.out.print("\n"+this.day + "\t" + this.month + "\t" + this.year);
 	}
 }

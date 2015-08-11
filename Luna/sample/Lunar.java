@@ -996,7 +996,15 @@ public class Lunar {
 //			System.out.println(d+"\t"+m+"\t"+THU[thu(d,m,Y)]+"\t"+result[i][2]);
 //		}
 		
-		ngayBatTuong(2000);
-		System.out.println(countNgayBatTuong);
+//		ngayBatTuong(2000);
+//		System.out.println(countNgayBatTuong);
+		
+		int[][] a= lunarYear(2015);
+		for (int i= 0; i< a.length; i++) {
+			for (int j= 0; j< 5; j++) {
+				System.out.print(a[i][j]+"\t");
+			}
+			System.out.println();
+		}
 	}
 }

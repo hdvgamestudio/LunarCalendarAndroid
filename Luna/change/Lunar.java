@@ -3,6 +3,8 @@ package change;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Lunar {
 
@@ -238,7 +240,7 @@ public class Lunar {
 					0);
 		}
 		for (int i = 0; i < ret.length; i++) {
-			ret[i].setLeap(MOD(i + 11, 12));
+			ret[i].setNm(MOD(i + 11, 12));
 		}
 		if (leap) {
 			initLeapYear(ret);
@@ -720,28 +722,28 @@ public class Lunar {
 		int[][] arrBatTuong = arrayBatTuong(0);
 		DayMonthYear[] tietKhi = tietKhiMoc(Y);
 		DayMonthYear a = new DayMonthYear();
-		
+
 		int can, chi;
 		int counter = 0;
-		
+
 		a.setDay(tietKhi[0].getDay());
 		a.setMonth(tietKhi[0].getMonth());
 		a.setYear(Y);
-		
+
 		while (counter < 24) {
-			
+
 			can = can(a)[0];
 			chi = chi(a)[0];
 
 			for (int i = 0; i < arrBatTuong.length; i++) {
 				if (can == arrBatTuong[i][1] && chi == arrBatTuong[i][0]) {
 					ret.add(a);
-//					 System.out.println(D + "\t" + M + "\t" + counter);
+					// System.out.println(D + "\t" + M + "\t" + counter);
 
 				}
 			}
 
-			a= addDay(a, 1);
+			a = addDay(a, 1);
 
 			if (a.getDay() == tietKhi[counter + 2].getDay()
 					&& a.getMonth() == tietKhi[counter + 2].getMonth()) {
@@ -807,6 +809,7 @@ public class Lunar {
 	}
 
 	public static int[] thangTot(DayMonthYear dmy) {
+
 		int[] ret = new int[2];
 		int chi = chi(dmy)[2];
 
@@ -842,127 +845,144 @@ public class Lunar {
 			ret[1] = 9;
 			break;
 		}
-		
-		
-		DayMonthYear[] a= lunarYear(dmy.getYear());
-		for (int i= 0; i< a.length; i++) {
-			a[i].printInfo();
-			System.out.println(a[i].getNm());
-			if (a[i].getNm()== ret[0]) {
-				a[i].printInfo();
-				a[i+1].printInfo();
-			}
-		}
-		
-		
+
 		return ret;
-				
+
 	}
 
 	public static ArrayList<DayMonthYear> cuoiGa(DayMonthYear dmy1,
 			DayMonthYear dmy2) {
-		ArrayList<DayMonthYear> ret = new ArrayList<DayMonthYear>();
 
+		ArrayList<DayMonthYear> result = new ArrayList<DayMonthYear>();
+
+		ArrayList<DayMonthYear> ret = new ArrayList<DayMonthYear>();
 		ArrayList<DayMonthYear> resultNgayTot = ngayTot(dmy1.getYear());
 		ArrayList<DayMonthYear> resultTrucThanh = trucThanh(dmy1.getYear());
 
 		long longDays1, longDays2;
-		int[] ngayDep;
-		int d, m;
 
 		ret.addAll(ngayBatTuong(dmy1.getYear()));
-//		ret.addAll(resultNgayTot);
-//		ret.addAll(resultTrucThanh);
+
 		int counter = ret.size();
+		int k = 0;
 
-		for (int i= 0; i< ret.size(); i++)
-			ret.get(i).printInfo();
+		for (int i = 0; i < resultNgayTot.size(); i++) {
+			for (int j = 0; j < counter; j++) {
+				if (resultNgayTot.get(i).getDay() == ret.get(j).getDay()
+						&& resultNgayTot.get(i).getMonth() == ret.get(j)
+								.getMonth()) {
+					k = 0;
+					break;
+				} else
+					k++;
 
-//		 for (int i= 0; i< resultTrucThanh.size(); i++) {
-//		 for (int j= 0; j< ret.size(); j++) {
-//		 if (ret.get(j).equalsDM(resultTrucThanh.get(i))== false)
-//		 ret.add(resultTrucThanh.get(i));
-//		 }
-//		 }
+			}
+
+			if (k == counter) {
+				ret.add(resultNgayTot.get(i));
+			}
+
+			k = 0;
+		}
+
+		counter = ret.size();
+		k = 0;
+		for (int i = 0; i < resultTrucThanh.size(); i++) {
+			for (int j = 0; j < counter; j++) {
+				if (resultTrucThanh.get(i).getDay() == ret.get(j).getDay()
+						&& resultTrucThanh.get(i).getMonth() == ret.get(j)
+								.getMonth()) {
+					k = 0;
+					break;
+				} else
+					k++;
+
+			}
+
+			if (k == counter) {
+				ret.add(resultTrucThanh.get(i));
+			}
+
+			k = 0;
+		}
 
 		System.out.println("************");
 
-		// for (int i = 0; i < countNgayBatTuong; i++) {
-		// d = resultNgayBatTuong[i][0];
-		// m = resultNgayBatTuong[i][1];
-		// longDays1 = daysBetween2Dates(d, m, Y, dmy1);
-		// longDays2 = daysBetween2Dates(d, m, Y, dmy2);
-		// if (longDays1 <= 0 && longDays2 >= 0) {
-		// ret[countNgayCuoi][0] = d;
-		// ret[countNgayCuoi][1] = m;
-		// countNgayCuoi++;
-		//
-		// // System.out.println(d + "\t" + m + "\t" + THU[thu(d, m, Y)]);
-		// }
-		// }
-		//
-		// for (int i = 0; i < countNgayTot; i++) {
-		// d = resultNgayTot[i][0];
-		// m = resultNgayTot[i][1];
-		// longDays1 = daysBetween2Dates(d, m, Y, D1, M1, Y);
-		// longDays2 = daysBetween2Dates(d, m, Y, D2, M2, Y);
-		// if (longDays1 <= 0 && longDays2 >= 0) {
-		// int counter = 0;
-		// for (int j = 0; j < countNgayCuoi; j++) {
-		// if (d == ret[j][0] && m == ret[j][1]) {
-		// ret[j][2] = 1;
-		// break;
-		// } else {
-		// counter++;
-		// }
-		// }
-		// if (counter == countNgayCuoi) {
-		// ret[countNgayCuoi][0] = d;
-		// ret[countNgayCuoi][1] = m;
-		// countNgayCuoi++;
-		//
-		// // System.out.println(d + "\t" + m + "\t" + THU[thu(d, m,
-		// // Y)]);
-		// }
-		// }
-		// }
-		//
-		// for (int i = 0; i < countTrucThanh; i++) {
-		// d = resultTrucThanh[i][0];
-		// m = resultTrucThanh[i][1];
-		// longDays1 = daysBetween2Dates(d, m, Y, D1, M1, Y);
-		// longDays2 = daysBetween2Dates(d, m, Y, D2, M2, Y);
-		// if (longDays1 <= 0 && longDays2 >= 0) {
-		// int counter = 0;
-		// for (int j = 0; j < countNgayCuoi; j++) {
-		// if (d == ret[j][0] && m == ret[j][1]) {
-		// ret[j][2] = 1;
-		// break;
-		// } else {
-		// counter++;
-		// }
-		// }
-		// if (counter == countNgayCuoi) {
-		// ret[countNgayCuoi][0] = d;
-		// ret[countNgayCuoi][1] = m;
-		// countNgayCuoi++;
-		//
-		// // System.out.println(d + "\t" + m + "\t" + THU[thu(d, m,
-		// // Y)]);
-		// }
-		// }
-		// }
-		return ret;
+		DayMonthYear dmy0;
+		for (int i = 0; i < ret.size(); i++) {
+			dmy0 = ret.get(i);
+			longDays1 = daysBetween2Dates(dmy0, dmy1);
+			longDays2 = daysBetween2Dates(dmy0, dmy2);
+			if (longDays1 <= 0 && longDays2 >= 0) {
+				result.add(dmy0);
+				// dmy0.printInfo();
+			}
+		}
+		sortResult(result);
+		ngayXau(result);
+
+		return result;
+	}
+
+	public static void sortResult(ArrayList<DayMonthYear> result) {
+
+		Collections.sort(result, new Comparator<DayMonthYear>() {
+
+			@Override
+			public int compare(DayMonthYear o1, DayMonthYear o2) {
+				// TODO Auto-generated method stub
+				if (o1.getMonth() > o2.getMonth())
+					return 1;
+				else {
+					if (o1.getMonth() == o2.getMonth()) {
+						if (o1.getDay() > o2.getDay())
+							return 1;
+						else {
+							if (o1.getDay() == o2.getDay())
+								return 0;
+							else
+								return -1;
+						}
+					} else
+						return -1;
+				}
+			}
+		});
+
+	}
+
+	public static void ngayXau(ArrayList<DayMonthYear> result) {
+
+		DayMonthYear dmy = new DayMonthYear();
+		int mua, chi;
+
+		for (int i = 0; i < result.size(); i++) {
+			dmy = result.get(i);
+			chi = chi(dmy)[0];
+			mua = tietKhi(dmy);
+
+			if (mua < 2 || mua >= 20) {
+				if (chi == 1 || chi == 2 || chi == 8 || chi == 9)
+					result.remove(i);
+			}
+			if (mua >= 2 && mua < 8) {
+				if (chi == 0 || chi == 4 || chi == 5 || chi == 9)
+					result.remove(i);
+			}
+			if (mua >= 8 && mua < 14) {
+				if (chi == 1 || chi == 3 || chi == 7 || chi == 10)
+					result.remove(i);
+			}
+			if (mua >= 14 && mua < 20) {
+				if (chi == 2 || chi == 3 || chi == 6 || chi == 8 || chi == 10)
+					result.remove(i);
+			}
+		}
 	}
 
 	/*----------MAIN-------------*/
 
 	public static void main(String[] args) {
-		int[][] result;
-		int D, M, Y;
-		D = 31;
-		M = 7;
-		Y = 2015;
 
 		// System.out.print("\nNgay duong -> ngay am:\t");
 		// result = solar2Lunar(D, M, Y);
@@ -1033,18 +1053,12 @@ public class Lunar {
 		// System.out.println(TRUC[truc(D, M, Y)]);
 		// sunLongitude(localToJD(4, 4, 2009));
 
-		// result = cuoiGa(6, 8, 1, 12, 2015);
-		// for (int i = 0; i < countNgayCuoi; i++) {
-		// int d = result[i][0];
-		// int m = result[i][1];
-		// System.out.println(d + "\t" + m + "\t" + THU[thu(d, m, Y)] + "\t"
-		// + result[i][2]);
-		// }
+		ArrayList<DayMonthYear> a = cuoiGa(new DayMonthYear(11, 8, 2015),
+				new DayMonthYear(1, 12, 2015));
+		for (int i = 0; i < a.size(); i++) {
+			a.get(i).printInfo();
+			
+		}
 
-//		ArrayList<DayMonthYear> a = cuoiGa(new DayMonthYear(1, 1, 2000),
-//				new DayMonthYear(1, 12, 2000));
-//		System.out.println(a.size());
-		
-		thangTot(new DayMonthYear(5,5,2015));
 	}
 }
