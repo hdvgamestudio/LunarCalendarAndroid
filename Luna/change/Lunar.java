@@ -579,10 +579,8 @@ public class Lunar {
 		return gio;
 	}
 
-	static int countSaoTot;
-
-	public static int[] saoTot(DayMonthYear dmy) {
-		int[] ret = new int[5];
+	public static ArrayList<Integer> saoTot(DayMonthYear dmy) {
+		ArrayList<Integer> ret = new ArrayList<Integer>();
 		int[][] sao = { { 5, 7, 9, 11, 1, 3, 5, 7, 9, 11, 1, 3 },
 				{ 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 },
 				{ 6, 8, 10, 0, 2, 4, 6, 8, 10, 0, 2, 4 },
@@ -600,21 +598,17 @@ public class Lunar {
 		int m = solar2Lunar(dmy).getMonth();
 		int chi = chi(dmy)[0];
 
-		countSaoTot = 0;
 		for (int i = 0; i < 13; i++) {
 			if (chi == sao[i][m - 1]) {
-				ret[countSaoTot] = i;
-				countSaoTot++;
+				ret.add(i);
 			}
 		}
 
 		return ret;
 	}
 
-	static int countSaoXau;
-
-	public static int[] saoXau(DayMonthYear dmy) {
-		int[] ret = new int[7];
+	public static ArrayList<Integer> saoXau(DayMonthYear dmy) {
+		ArrayList<Integer> ret = new ArrayList<Integer>();
 		int[][] saoChi = { { 5, 0, 7, 2, 9, 4, 11, 6, 1, 8, 3, 10 },
 				{ 10, 4, 11, 5, 0, 6, 1, 7, 2, 8, 3, 9 },
 				{ 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5 },
@@ -633,81 +627,92 @@ public class Lunar {
 				{ 6, 7, 5, 8, 9, 4, 0, 1, 5, 2, 3, 4 } };
 
 		int m = solar2Lunar(dmy).getMonth();
-		int chi = chi(dmy)[0];
 
-		countSaoXau = 0;
+		int chi = chi(dmy)[0];
 		for (int i = 0; i < 14; i++) {
 			if (chi == saoChi[i][m - 1]) {
-				ret[countSaoXau] = i;
-				countSaoXau++;
+				ret.add(i);
 			}
 		}
 
 		int can = can(dmy)[0];
 		for (int i = 0; i < 2; i++) {
 			if (can == saoCan[i][m - 1]) {
-				ret[countSaoXau] = i;
-				countSaoXau++;
+				ret.add(i);
 			}
 		}
 
 		return ret;
 	}
 
+	// array các ngày bất tương (theo tiết khí)
 	public static int[][] arrayBatTuong(int counter) {
 		int[][] ret = null;
 
 		switch (counter) {
 		case 0:
+		case 1:
 			ret = new int[][] { { 2, 2 }, { 3, 3 }, { 4, 4 }, { 3, 1 },
 					{ 4, 2 }, { 5, 3 }, { 6, 4 }, { 6, 2 }, { 7, 3 }, { 7, 1 },
 					{ 2, 4 } };
 			break;
-		case 1:
-			ret = new int[][] { { 2, 2 }, { 3, 3 }, { 2, 5 }, { 5, 3 },
+		case 2:
+		case 3:
+			ret = new int[][] { { 2, 2 }, { 3, 3 }, { 2, 0 }, { 5, 3 },
 					{ 4, 0 }, { 6, 2 }, { 7, 3 } };
 			break;
-		case 2:
+		case 4:
+		case 5:
 			ret = new int[][] { { 1, 1 }, { 2, 0 }, { 3, 1 }, { 2, 10 },
 					{ 4, 0 }, { 5, 1 }, { 4, 10 }, { 6, 0 }, { 6, 10 } };
 			break;
-		case 3:
+		case 6:
+		case 7:
 			ret = new int[][] { { 1, 1 }, { 3, 1 }, { 1, 9 }, { 5, 1 },
 					{ 3, 9 }, { 5, 9 } };
 			break;
-		case 4:
+		case 8:
+		case 9:
 			ret = new int[][] { { 0, 0 }, { 0, 10 }, { 2, 0 }, { 0, 8 },
 					{ 1, 9 }, { 2, 10 }, { 4, 0 }, { 2, 8 }, { 3, 9 },
 					{ 4, 10 } };
 			break;
-		case 5:
+		case 10:
+		case 11:
 			ret = new int[][] { { 9, 9 }, { 0, 10 }, { 9, 7 }, { 0, 8 },
 					{ 1, 9 }, { 2, 10 }, { 1, 7 }, { 2, 8 }, { 4, 0 }, { 5, 7 } };
 			break;
-		case 6:
+		case 12:
+		case 13:
 			ret = new int[][] { { 8, 8 }, { 9, 9 }, { 0, 10 }, { 8, 6 },
 					{ 9, 7 }, { 0, 8 }, { 1, 9 }, { 0, 6 }, { 1, 7 },
 					{ 4, 10 }, { 5, 7 }, { 8, 10 } };
 			break;
-		case 7:
+		case 14:
+		case 15:
 			ret = new int[][] { { 5, 5 }, { 8, 8 }, { 9, 9 }, { 8, 6 },
 					{ 9, 7 }, { 0, 8 }, { 1, 9 }, { 9, 5 }, { 0, 6 }, { 1, 7 },
 					{ 1, 5 }, { 4, 6 }, { 5, 7 } };
 			break;
-		case 8:
+		case 16:
+		case 17:
 			ret = new int[][] { { 4, 4 }, { 5, 5 }, { 7, 7 }, { 7, 5 },
-					{ 8, 6 }, { 9, 7 }, { 9, 5 }, { 9, 3 }, { 4, 6 }, { 5, 7 } };
+					{ 8, 6 }, { 9, 7 }, { 0, 8 }, { 8, 4 }, { 9, 5 }, { 0, 6 },
+					{ 0, 4 }, { 4, 6 } };
 			break;
-		case 9:
+		case 18:
+		case 19:
 			ret = new int[][] { { 5, 5 }, { 6, 6 }, { 7, 7 }, { 7, 5 },
 					{ 8, 6 }, { 9, 7 }, { 9, 5 }, { 9, 3 }, { 4, 6 }, { 5, 7 } };
 			break;
-		case 10:
+		case 20:
+		case 21:
 			ret = new int[][] { { 4, 4 }, { 6, 6 }, { 4, 2 }, { 5, 3 },
 					{ 6, 4 }, { 8, 6 }, { 6, 2 }, { 7, 3 }, { 8, 4 }, { 8, 2 },
 					{ 9, 3 }, { 4, 6 } };
 			break;
-		case 11:
+		case 22:
+		case 23:
 			ret = new int[][] { { 3, 3 }, { 4, 4 }, { 5, 5 }, { 3, 1 },
 					{ 5, 3 }, { 6, 4 }, { 7, 5 }, { 8, 4 }, { 7, 1 }, { 3, 5 } };
 			break;
@@ -716,49 +721,45 @@ public class Lunar {
 		return ret;
 	}
 
-	public static ArrayList<DayMonthYear> ngayBatTuong(int Y) {
+	// lấy ra ngày bất tương trong khoảng cho trước
+	public static ArrayList<DayMonthYear> ngayBatTuong(DayMonthYear dmy1,
+			DayMonthYear dmy2) {
 
 		ArrayList<DayMonthYear> ret = new ArrayList<DayMonthYear>();
-		int[][] arrBatTuong = arrayBatTuong(0);
-		DayMonthYear[] tietKhi = tietKhiMoc(Y);
-		DayMonthYear a = new DayMonthYear();
+		DayMonthYear dmy = dmy1;
+		int[][] arrBatTuong;
+		int tietKhi, can, chi;
+		boolean flag = true;
 
-		int can, chi;
-		int counter = 0;
+		while (flag) {
 
-		a.setDay(tietKhi[0].getDay());
-		a.setMonth(tietKhi[0].getMonth());
-		a.setYear(Y);
-
-		while (counter < 24) {
-
-			can = can(a)[0];
-			chi = chi(a)[0];
+			tietKhi = tietKhi(dmy);
+			arrBatTuong = arrayBatTuong(tietKhi);
+			can = can(dmy)[0];
+			chi = chi(dmy)[0];
 
 			for (int i = 0; i < arrBatTuong.length; i++) {
-				if (can == arrBatTuong[i][1] && chi == arrBatTuong[i][0]) {
-					ret.add(a);
-					// System.out.println(D + "\t" + M + "\t" + counter);
-
+				if (can == arrBatTuong[i][0] && chi == arrBatTuong[i][1]) {
+					ret.add(dmy);
+					// dmy.printInfo();
 				}
 			}
 
-			a = addDay(a, 1);
+			dmy = addDay(dmy, 1);
 
-			if (a.getDay() == tietKhi[counter + 2].getDay()
-					&& a.getMonth() == tietKhi[counter + 2].getMonth()) {
-				arrBatTuong = arrayBatTuong(counter / 2);
-				counter += 2;
-			}
-			if (a.getDay() == 31 && a.getMonth() == 12)
+			if (daysBetween2Dates(dmy, dmy2) == 0) {
+				flag = false;
 				break;
+			}
+
 		}
 
 		return ret;
 	}
 
-	// 11 ngay tot cho cuoi xin
-	public static ArrayList<DayMonthYear> ngayTot(int Y) {
+	// lấy ra 11 ngày tốt cho cưới xin trong khoảng cho trước
+	public static ArrayList<DayMonthYear> ngayTot(DayMonthYear dmy1,
+			DayMonthYear dmy2) {
 
 		ArrayList<DayMonthYear> ret = new ArrayList<DayMonthYear>();
 
@@ -766,45 +767,55 @@ public class Lunar {
 				{ 4, 2 }, { 5, 3 }, { 2, 10 }, { 4, 0 }, { 6, 2 }, { 8, 2 },
 				{ 9, 3 }, { 1, 5 } };
 
-		DayMonthYear dmy;
-		int d, m, can, chi;
+		DayMonthYear dmy = dmy1;
+		int can, chi;
+		boolean flag = true;
 
-		for (m = 1; m <= 12; m++) {
-			for (d = 1; d <= maxDayOfMonth(m, Y); d++) {
-				dmy = new DayMonthYear(d, m, Y);
-				can = can(dmy)[0];
-				chi = chi(dmy)[0];
+		while (flag) {
 
-				for (int i = 0; i < 11; i++) {
-					if (can == arrNgayTot[i][0] && chi == arrNgayTot[i][1]) {
-						ret.add(dmy);
+			can = can(dmy)[0];
+			chi = chi(dmy)[0];
 
-						// System.out.println(d + "\t" + m);
-					}
+			for (int i = 0; i < 11; i++) {
+				if (can == arrNgayTot[i][0] && chi == arrNgayTot[i][1]) {
+					ret.add(dmy);
+
+					// System.out.println(d + "\t" + m);
 				}
+			}
+
+			dmy = addDay(dmy, 1);
+			if (daysBetween2Dates(dmy, dmy2) == 0) {
+				flag = false;
+				break;
 			}
 		}
 
 		return ret;
 	}
 
-	// gap truc thanh cho cuoi xin
-	public static ArrayList<DayMonthYear> trucThanh(int Y) {
+	// lấy ra những ngày trực thành cho cưới xin trong khoảng cho trước
+	public static ArrayList<DayMonthYear> trucThanh(DayMonthYear dmy1,
+			DayMonthYear dmy2) {
 		ArrayList<DayMonthYear> ret = new ArrayList<DayMonthYear>();
 
-		DayMonthYear dmy;
-		int d, m;
+		DayMonthYear dmy = dmy1;
+		boolean flag = true;
 
-		for (m = 1; m <= 12; m++) {
-			for (d = 1; d <= maxDayOfMonth(m, Y); d++) {
-				dmy = new DayMonthYear(d, m, Y);
-				if (truc(dmy) == 8) {
-					ret.add(dmy);
+		while (flag) {
 
-					// System.out.println(d + "\t" + m);
-				}
+			if (truc(dmy) == 8) {
+				ret.add(dmy);
+			}
+
+			dmy = addDay(dmy, 1);
+
+			if (daysBetween2Dates(dmy, dmy2) == 0) {
+				flag = false;
+				break;
 			}
 		}
+
 		return ret;
 	}
 
@@ -850,21 +861,255 @@ public class Lunar {
 
 	}
 
+	// sắp xếp ngày tháng năm
+	public static void sortResult(ArrayList<DayMonthYear> result) {
+
+		Collections.sort(result, new Comparator<DayMonthYear>() {
+
+			@Override
+			public int compare(DayMonthYear o1, DayMonthYear o2) {
+				// TODO Auto-generated method stub
+				long noDay = daysBetween2Dates(o1, o2);
+				if (noDay > 0)
+					return -1;
+				else {
+					if (noDay == 0)
+						return 0;
+					else
+						return 1;
+				}
+			}
+		});
+
+	}
+
+	// loại bỏ những ngày ngưu lang chức nữ, không sang, không phòng; nguyệt ky,
+	// tam nương, dương công kỵ nhật trong list result
+	public static void ngayXau(ArrayList<DayMonthYear> result) {
+
+		DayMonthYear dmy = new DayMonthYear();
+		int mua, chi, d, m;
+
+		for (int i = 0; i < result.size(); i++) {
+			dmy = result.get(i);
+			chi = chi(dmy)[0];
+			mua = tietKhi(dmy);
+			d = solar2Lunar(dmy).getDay();
+			m = solar2Lunar(dmy).getMonth();
+
+			// 3 ngày nguyệt kỵ và 6 ngày tam nương
+			if (d == 5 || d == 14 || d == 23 || d == 3 || d == 7 || d == 13
+					|| d == 18 || d == 22 || d == 27) {
+				result.remove(i);
+			}
+
+			// 13 ngày dương công kỵ nhật (bỏ những ngày trùng với trên)
+			if ((d == 11 && m == 2) || (d == 9 && m == 3) || (d == 8 && m == 7)
+					|| (d == 29 && m == 7) || (d == 25 && m == 9)
+					|| (d == 21 && m == 11) || (d == 19 && m == 12)) {
+				result.remove(i);
+			}
+
+			// mùa đông: sửu, dần, thân, dậu
+			if (mua < 2 || mua >= 20) {
+				if (chi == 1 || chi == 2 || chi == 8 || chi == 9)
+					result.remove(i);
+			}
+
+			// mùa xuân: tý, thìn, tỵ, dậu
+			if (mua >= 2 && mua < 8) {
+				if (chi == 0 || chi == 4 || chi == 5 || chi == 9)
+					result.remove(i);
+			}
+
+			// mùa hè: sửu, mão, mùi, tuất
+			if (mua >= 8 && mua < 14) {
+				if (chi == 1 || chi == 3 || chi == 7 || chi == 10)
+					result.remove(i);
+			}
+
+			// mùa thu: dần, mão, ngọ, thân, tuất
+			if (mua >= 14 && mua < 20) {
+				if (chi == 2 || chi == 3 || chi == 6 || chi == 8 || chi == 10)
+					result.remove(i);
+			}
+		}
+	}
+
+	// loại bỏ ngày xấu cô hư sát trong result (cho biết ngày tháng năm sinh chú
+	// rể, cô dâu)
+	public static void coHuSat(ArrayList<DayMonthYear> result,
+			DayMonthYear dmyMen, DayMonthYear dmyWoman) {
+
+		int month;
+
+		int[] co = new int[2];
+		int[] hu = new int[2];
+
+		int coHuSatMen = (can(dmyMen)[2] - chi(dmyMen)[2] + 12) % 12;
+		int coHuSatWoman = (can(dmyWoman)[2] - chi(dmyWoman)[2] + 12) % 12;
+
+		switch (coHuSatMen) {
+		case 0:
+			co[0] = 9;
+			co[1] = 10;
+			break;
+		case 2:
+			co[0] = 7;
+			co[1] = 8;
+			break;
+		case 4:
+			co[0] = 5;
+			co[1] = 6;
+			break;
+		case 6:
+			co[0] = 3;
+			co[1] = 4;
+			break;
+		case 8:
+			co[0] = 1;
+			co[1] = 2;
+			break;
+		case 10:
+			co[0] = 11;
+			co[1] = 12;
+			break;
+		}
+
+		switch (coHuSatWoman) {
+		case 0:
+			hu[0] = 2;
+			hu[1] = 4;
+			break;
+		case 2:
+			hu[0] = 1;
+			hu[1] = 3;
+			break;
+		case 4:
+			hu[0] = 11;
+			hu[1] = 12;
+			break;
+		case 6:
+			hu[0] = 9;
+			hu[1] = 10;
+			break;
+		case 8:
+			hu[0] = 7;
+			hu[1] = 8;
+			break;
+		case 10:
+			hu[0] = 5;
+			hu[1] = 6;
+			break;
+		}
+
+		for (int i = 0; i < result.size(); i++) {
+			month = solar2Lunar(result.get(i)).getMonth();
+			if (month == co[0] || month == co[1] || month == hu[0]
+					|| month == hu[1]) {
+				result.remove(i);
+			}
+		}
+	}
+
+	// năm kỵ cưới gả tính theo năm sinh chú rể, cô dâu
+	public static int[] namXau(DayMonthYear dmyMen, DayMonthYear dmyWoman) {
+		int chiMen = chi(dmyMen)[2];
+		int chiWoman = chi(dmyWoman)[2];
+		int[] y = new int[2];
+
+		switch (chiMen) {
+		case 0:
+			y[0] = 7;
+			break;
+		case 1:
+			y[0] = 8;
+			break;
+		case 2:
+			y[0] = 9;
+			break;
+		case 3:
+			y[0] = 10;
+			break;
+		case 4:
+			y[0] = 11;
+			break;
+		case 5:
+			y[0] = 0;
+			break;
+		case 6:
+			y[0] = 1;
+			break;
+		case 7:
+			y[0] = 2;
+			break;
+		case 8:
+			y[0] = 3;
+			break;
+		case 9:
+			y[0] = 4;
+			break;
+		case 10:
+			y[0] = 5;
+			break;
+		case 11:
+			y[0] = 6;
+			break;
+		}
+
+		switch (chiWoman) {
+		case 0:
+			y[1] = 3;
+			break;
+		case 1:
+			y[1] = 2;
+			break;
+		case 2:
+			y[1] = 1;
+			break;
+		case 3:
+			y[1] = 0;
+			break;
+		case 4:
+			y[1] = 11;
+			break;
+		case 5:
+			y[1] = 10;
+			break;
+		case 6:
+			y[1] = 9;
+			break;
+		case 7:
+			y[1] = 8;
+			break;
+		case 8:
+			y[1] = 7;
+			break;
+		case 9:
+			y[1] = 6;
+			break;
+		case 10:
+			y[1] = 5;
+			break;
+		case 11:
+			y[1] = 4;
+			break;
+		}
+
+		return y;
+	}
+
+	// chọn ngày cưới trong khoảng cho trước
 	public static ArrayList<DayMonthYear> cuoiGa(DayMonthYear dmy1,
-			DayMonthYear dmy2) {
+			DayMonthYear dmy2, DayMonthYear dmyMen, DayMonthYear dmyWoman) {
 
-		ArrayList<DayMonthYear> result = new ArrayList<DayMonthYear>();
-
-		ArrayList<DayMonthYear> ret = new ArrayList<DayMonthYear>();
-		ArrayList<DayMonthYear> resultNgayTot = ngayTot(dmy1.getYear());
-		ArrayList<DayMonthYear> resultTrucThanh = trucThanh(dmy1.getYear());
-
-		long longDays1, longDays2;
-
-		ret.addAll(ngayBatTuong(dmy1.getYear()));
+		ArrayList<DayMonthYear> ret = ngayBatTuong(dmy1, dmy2);
+		ArrayList<DayMonthYear> resultNgayTot = ngayTot(dmy1, dmy2);
+		ArrayList<DayMonthYear> resultTrucThanh = trucThanh(dmy1, dmy2);
 
 		int counter = ret.size();
 		int k = 0;
+		int[] y = namXau(dmyMen, dmyWoman);
 
 		for (int i = 0; i < resultNgayTot.size(); i++) {
 			for (int j = 0; j < counter; j++) {
@@ -906,78 +1151,19 @@ public class Lunar {
 			k = 0;
 		}
 
-		System.out.println("************");
-
-		DayMonthYear dmy0;
-		for (int i = 0; i < ret.size(); i++) {
-			dmy0 = ret.get(i);
-			longDays1 = daysBetween2Dates(dmy0, dmy1);
-			longDays2 = daysBetween2Dates(dmy0, dmy2);
-			if (longDays1 <= 0 && longDays2 >= 0) {
-				result.add(dmy0);
-				// dmy0.printInfo();
+		ngayXau(ret);
+		coHuSat(ret, dmyMen, dmyWoman);
+		sortResult(ret);
+		
+		y= namXau(dmyMen, dmyWoman);
+		for (int i = dmy1.getYear(); i < dmy1.getYear() + 11; i++) {
+			int chiNam = chi(new DayMonthYear(5, 5, i))[2];
+			if (chiNam == y[0] || chiNam == y[1]) {
+				System.out.println("Nam: " + i + " khong tot");
 			}
 		}
-		sortResult(result);
-		ngayXau(result);
 
-		return result;
-	}
-
-	public static void sortResult(ArrayList<DayMonthYear> result) {
-
-		Collections.sort(result, new Comparator<DayMonthYear>() {
-
-			@Override
-			public int compare(DayMonthYear o1, DayMonthYear o2) {
-				// TODO Auto-generated method stub
-				if (o1.getMonth() > o2.getMonth())
-					return 1;
-				else {
-					if (o1.getMonth() == o2.getMonth()) {
-						if (o1.getDay() > o2.getDay())
-							return 1;
-						else {
-							if (o1.getDay() == o2.getDay())
-								return 0;
-							else
-								return -1;
-						}
-					} else
-						return -1;
-				}
-			}
-		});
-
-	}
-
-	public static void ngayXau(ArrayList<DayMonthYear> result) {
-
-		DayMonthYear dmy = new DayMonthYear();
-		int mua, chi;
-
-		for (int i = 0; i < result.size(); i++) {
-			dmy = result.get(i);
-			chi = chi(dmy)[0];
-			mua = tietKhi(dmy);
-
-			if (mua < 2 || mua >= 20) {
-				if (chi == 1 || chi == 2 || chi == 8 || chi == 9)
-					result.remove(i);
-			}
-			if (mua >= 2 && mua < 8) {
-				if (chi == 0 || chi == 4 || chi == 5 || chi == 9)
-					result.remove(i);
-			}
-			if (mua >= 8 && mua < 14) {
-				if (chi == 1 || chi == 3 || chi == 7 || chi == 10)
-					result.remove(i);
-			}
-			if (mua >= 14 && mua < 20) {
-				if (chi == 2 || chi == 3 || chi == 6 || chi == 8 || chi == 10)
-					result.remove(i);
-			}
-		}
+		return ret;
 	}
 
 	/*----------MAIN-------------*/
@@ -1053,11 +1239,11 @@ public class Lunar {
 		// System.out.println(TRUC[truc(D, M, Y)]);
 		// sunLongitude(localToJD(4, 4, 2009));
 
-		ArrayList<DayMonthYear> a = cuoiGa(new DayMonthYear(11, 8, 2015),
-				new DayMonthYear(1, 12, 2015));
+		ArrayList<DayMonthYear> a = cuoiGa(new DayMonthYear(11, 1, 2015),
+				new DayMonthYear(1, 12, 2016), new DayMonthYear(24, 11, 1993), new DayMonthYear(4, 9, 1995));
 		for (int i = 0; i < a.size(); i++) {
 			a.get(i).printInfo();
-			
+
 		}
 
 	}
