@@ -1,7 +1,7 @@
-package change;
+package com.hdv.lunar.control;
 
 public class DayMonthYear {
-	private int day, month, year, nm, leap;
+	private int day, month, year, nm, leap, full;
 
 	public DayMonthYear(int day, int month, int year, int nm, int leap) {
 		this.day = day;
@@ -73,7 +73,22 @@ public class DayMonthYear {
 		this.leap = leap;
 	}
 
+	public int getFull() {
+		return full;
+	}
+
+	public void setFull(int full) {
+		this.full = full;
+	}
+
 	public void printInfo() {
-		System.out.print("\n"+this.day + "\t" + this.month + "\t" + this.year);
+		System.out
+				.print("\n" + this.day + "\t" + this.month + "\t" + this.year);
+	}
+
+	public void printFullInfo() {
+		System.out.println("\n" + this.day + "\t" + this.month + "\t"
+				+ this.year + "\t" + this.nm + "\t" + this.leap + "\t"
+				+ this.full);
 	}
 }

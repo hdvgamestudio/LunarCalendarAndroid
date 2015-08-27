@@ -1,4 +1,4 @@
-package change;
+package com.hdv.lunar.control;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class Lunar {
 			2 * PI / 3, 3 * PI / 4, 5 * PI / 6, 11 * PI / 12, PI, 13 * PI / 12,
 			7 * PI / 6, 5 * PI / 4, 4 * PI / 3, 17 * PI / 12, 3 * PI / 2 };
 
-	static final String[] SAO = new String[] { "14. Bich (thuy)",
+	public static final String[] SAO = new String[] { "14. Bich (thuy)",
 			"15. Khue (moc)", "16. Lau (kim)", "17. Vi (Tho)",
 			"18. Mao (nhat)", "19. Tat (nguyet)", "20. Chuy (hoa)",
 			"21. Sam (thuy)", "22. Tinh (moc)", "23. Quy (kim)",
@@ -28,39 +28,40 @@ public class Lunar {
 			"9. Nguu (kim)", "10. Nu (tho)", "11. Hu (nhat)",
 			"12. Nguy (nguyet)", "13. That (hoa)" };
 
-	static final String[] SAOTOT = new String[] { "Thien Duc", "Nguyet Duc",
-			"Thien Giai", "Thien Hy", "Thien Quy", "Tam Hop", "Sinh Khi",
-			"Thien Thanh", "Thien Quan", "Loc Ma", "Phuc Sinh", "Giai Than",
-			"Thien An" };
+	public static final String[] SAOTOT = new String[] { "Thien Duc",
+			"Nguyet Duc", "Thien Giai", "Thien Hy", "Thien Quy", "Tam Hop",
+			"Sinh Khi", "Thien Thanh", "Thien Quan", "Loc Ma", "Phuc Sinh",
+			"Giai Than", "Thien An" };
 
-	static final String[] SAOXAU = new String[] { "Thien Cuong", "Thu Tu",
-			"Dai Hao\tTu Khi\tQuan Phu", "Tieu Hao", "Sat Chu", "Thien Hoa",
-			"Dia Hoa", "Hoa Tai", "Nguyet Pha", "Bang Tieu Ngoa Giai",
-			"Tho Cam", "Tho Ky\tVang Vong", "Co Than", "Qua Tu", "Trung Tang",
-			"Trung Phuc" };
+	public static final String[] SAOXAU = new String[] { "Thien Cuong",
+			"Thu Tu", "Dai Hao\tTu Khi\tQuan Phu", "Tieu Hao", "Sat Chu",
+			"Thien Hoa", "Dia Hoa", "Hoa Tai", "Nguyet Pha",
+			"Bang Tieu Ngoa Giai", "Tho Cam", "Tho Ky\tVang Vong", "Co Than",
+			"Qua Tu", "Trung Tang", "Trung Phuc" };
 
-	static final String[] TIETKHI = new String[] { "Tieu han", "Dai han",
-			"Lap xuan", "Vu thuy", "Kinh trap", "Xuan phan", "Thanh minh",
-			"Coc vu", "Lap ha", "Tieu man", "Mang chung", "Ha chi", "Tieu thu",
-			"Dai thu", "Lap thu", "Xu thu", "Bach lo", "Thu phan", "Han lo",
-			"Suong gian", "Lap dong", "Tieu tuyet", "Dai tuyet", "Dong chi" };
+	public static final String[] TIETKHI = new String[] { "Tieu han",
+			"Dai han", "Lap xuan", "Vu thuy", "Kinh trap", "Xuan phan",
+			"Thanh minh", "Coc vu", "Lap ha", "Tieu man", "Mang chung",
+			"Ha chi", "Tieu thu", "Dai thu", "Lap thu", "Xu thu", "Bach lo",
+			"Thu phan", "Han lo", "Suong gian", "Lap dong", "Tieu tuyet",
+			"Dai tuyet", "Dong chi" };
 
-	static final String[] TRUC = new String[] { "Truc kien", "Truc tru",
+	public static final String[] TRUC = new String[] { "Truc kien", "Truc tru",
 			"Truc man", "Truc binh", "Truc dinh", "Truc chap", "Truc pha",
 			"Truc nguy", "Truc thanh", "Truc thu", "Truc khai", "Truc be" };
 
-	static final String[] CAN = new String[] { "Giap", "At", "Binh", "Dinh",
-			"Mau", "Ky", "Canh", "Tan", "Nham", "Quy" };
+	public static final String[] CAN = new String[] { "Giáp", "Ất", "Bính",
+			"Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý" };
 
-	static final String[] CHI = new String[] { "Ty (chuot)", "Suu", "Dan",
-			"Mao", "Thin", "Ty (ran)", "Ngo", "Mui", "Than", "Dau", "Tuat",
-			"Hoi" };
-	static final String[] THU = new String[] { "Chu nhat", "Thu hai", "Thu ba",
-			"Thu tu", "Thu nam", "Thu sau", "Thu bay" };
+	public static final String[] CHI = new String[] { "Tý", "Sửu",
+			"Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu",
+			"Tuất", "Hợi" };
+	public static final String[] THU = new String[] { "Thứ Hai", "Thứ Ba",
+			"Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy", "Chủ Nhật" };
 
-	static final String[] GIO = new String[] { "23h-1h", "1h-3h", "3h-5h",
-			"5h-7h", "7h-9h", "9h-11h", "11h-13h", "13h-15h", "15h-17h",
-			"17h-19h", "19h-21h", "21h-23h" };
+	public static final String[] GIO = new String[] { "23h-1h", "1h-3h",
+			"3h-5h", "5h-7h", "7h-9h", "9h-11h", "11h-13h", "13h-15h",
+			"15h-17h", "17h-19h", "19h-21h", "21h-23h" };
 
 	public static int INT(double d) {
 		return (int) Math.floor(d);
@@ -229,16 +230,15 @@ public class Lunar {
 		} else {
 			ret = new DayMonthYear[14];
 		}
-		ret[0] = new DayMonthYear(month11A.getDay(), month11A.getMonth(),
-				month11A.getYear(), 0, 0);
-		ret[ret.length - 1] = new DayMonthYear(month11B.getDay(),
-				month11B.getMonth(), month11B.getYear(), 0, 0);
+		ret[0] = month11A;
+		ret[ret.length - 1] = month11B;
+
 		for (int i = 1; i < ret.length - 1; i++) {
 			double nm = newMoon(k + i);
-			DayMonthYear a = localFromJD(nm);
-			ret[i] = new DayMonthYear(a.getDay(), a.getMonth(), a.getYear(), 0,
-					0);
+			ret[i] = localFromJD(nm);
+			ret[i - 1].setFull((int) daysBetween2Dates(ret[i - 1], ret[i]));
 		}
+
 		for (int i = 0; i < ret.length; i++) {
 			ret[i].setNm(MOD(i + 11, 12));
 		}
@@ -291,11 +291,15 @@ public class Lunar {
 			i--;
 		}
 		int dd = (int) (jdToday - localToJD(ly[i])) + 1;
-		int mm = ly[i].getLeap();
+		int mm = ly[i].getNm();
 		if (mm >= 11) {
 			yy--;
 		}
-		return new DayMonthYear(dd, mm, yy, ly[i].getLeap());
+
+		DayMonthYear ret = new DayMonthYear(dd, mm, yy, ly[i].getLeap());
+		ret.setFull(ly[i].getFull());
+
+		return ret;
 	}
 
 	// dmy: ngay, thang, nam, leap
@@ -343,7 +347,7 @@ public class Lunar {
 	}
 
 	public static int thu(DayMonthYear dmy) {
-		return (int) (localToJD(dmy) + 2.5) % 7;
+		return (int) (localToJD(dmy) + 1.5) % 7;
 	}
 
 	/* ket thuc can chi */
@@ -369,14 +373,27 @@ public class Lunar {
 		int Y = dmy.getYear();
 
 		D += add;
-		if (D > maxDayOfMonth(M, Y)) {
-			D = 1;
-			M++;
-			if (M > 12) {
-				M = 1;
-				Y++;
+		do {
+			if (D > maxDayOfMonth(M, Y)) {
+				D -= maxDayOfMonth(M, Y);
+				M++;
+				if (M > 12) {
+					M = 1;
+					Y++;
+				}
 			}
-		}
+
+			if (D <= 0) {
+				M--;
+				if (M < 1) {
+					M = 12;
+					Y--;
+					D += 31;
+				} else {
+					D += maxDayOfMonth(M, Y);
+				}
+			}
+		} while (D < 0 || D > maxDayOfMonth(M, Y));
 
 		return new DayMonthYear(D, M, Y);
 	}
@@ -385,31 +402,26 @@ public class Lunar {
 		DayMonthYear[] ret = new DayMonthYear[25];
 
 		int i = 0;
-		int D = 5;
-		int M = 1;
+		DayMonthYear dmy = new DayMonthYear(5, 1, Y);
 
 		while (i < 24) {
-			DayMonthYear a = new DayMonthYear(D, M, Y);
 
 			if (i == 5)
-				while (sunLongitude(localToJD(a)) > SUNLONG_MAJOR[6]) {
-					a.setDay(D + 1);
-					D++;
+				while (sunLongitude(localToJD(dmy)) > SUNLONG_MAJOR[6]) {
+					dmy = addDay(dmy, 1);
 				}
 			else
-				while (sunLongitude(localToJD(a)) < SUNLONG_MAJOR[i]) {
-					a.setDay(D + 1);
-					D++;
+				while (sunLongitude(localToJD(dmy)) < SUNLONG_MAJOR[i]) {
+					dmy = addDay(dmy, 1);
 				}
 
-			ret[i] = new DayMonthYear(a.getDay() - 1, M);
+			ret[i] = addDay(dmy, -1);
 
-			D = addDay(a, 14).getDay();
-			M = addDay(a, 14).getMonth();
+			dmy = addDay(dmy, 14);
 			i++;
 		}
 
-		ret[i] = new DayMonthYear(31, 12);
+		ret[i] = new DayMonthYear(31, 12, Y);
 
 		return ret;
 	}
@@ -422,16 +434,12 @@ public class Lunar {
 			return 23;
 		else {
 			for (int i = 0; i < 24; i++) {
-				DayMonthYear moc1 = new DayMonthYear(moc[i].getDay(),
-						moc[i].getMonth(), dmy.getYear());
-				DayMonthYear moc2 = new DayMonthYear(moc[i + 1].getDay(),
-						moc[i + 1].getMonth(), dmy.getYear());
-				a = daysBetween2Dates(moc1, dmy);
-				b = daysBetween2Dates(moc1, moc2);
+				a = daysBetween2Dates(moc[i], dmy);
+				b = daysBetween2Dates(moc[i + 1], dmy);
 				if (a < 0) {
 					return 23;
 				} else {
-					if (a < b) {
+					if (b < 0) {
 						return i;
 					}
 				}
@@ -442,17 +450,14 @@ public class Lunar {
 	}
 
 	public static int truc(DayMonthYear dmy) {
-		int i;
-		int Y = dmy.getYear();
 
-		for (i = 0; i < 24; i += 2) {
-			DayMonthYear a = new DayMonthYear(tietKhiMoc(Y)[i].getDay(),
-					tietKhiMoc(Y)[i].getMonth(), Y);
-			if (daysBetween2Dates(dmy, a) > 0) {
+		for (int i = 0; i < 24; i += 2) {
+			if (daysBetween2Dates(dmy, tietKhiMoc(dmy.getYear())[i]) > 0) {
 				return (chi(dmy)[0] + 12 - i / 2) % 12;
 			}
 		}
-		return (chi(dmy)[0]) % 12;
+
+		return (chi(dmy)[0]);
 	}
 
 	public static long daysBetween2Dates(DayMonthYear dmy1, DayMonthYear dmy2) {
@@ -477,63 +482,20 @@ public class Lunar {
 	}
 
 	public static int nhiThapBatTu(DayMonthYear dmy) {
-		DayMonthYear a = new DayMonthYear(1, 1, 1975);
-		long longDay = daysBetween2Dates(a, dmy) % 28;
-		// System.out.println(SAO[(int) longDay]);
-		return (int) longDay;
+
+		return (int) daysBetween2Dates(new DayMonthYear(1, 1, 1975), dmy) % 28;
+
 	}
 
-	// result=0: ngay hac dao
-	// result=1: ngay hoang dao
-	// result=-1: error
+	// result= 0: ngay hac dao
+	// result= 1: ngay hoang dao
 	public static int ngayHoangDao(DayMonthYear dmy) {
-		int chi = chi(dmy)[0];
-		DayMonthYear lunar = solar2Lunar(dmy);
 
 		int[] hoangDao = new int[] { 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0 };
-		int i = -1, result;
 
-		switch (lunar.getMonth()) {
-		case 1:
-		case 7:
-			i = 0;
-			break;
+		return hoangDao[(chi(dmy)[0]
+				- ((solar2Lunar(dmy).getMonth() * 2 - 2) % 12) + 12) % 12];
 
-		case 2:
-		case 8:
-			i = 2;
-			break;
-
-		case 3:
-		case 9:
-			i = 4;
-			break;
-
-		case 4:
-		case 10:
-			i = 6;
-			break;
-
-		case 5:
-		case 11:
-			i = 8;
-			break;
-
-		case 6:
-		case 12:
-			i = 10;
-			break;
-
-		default:
-			i = -1;
-			break;
-		}
-
-		if (i != -1) {
-			result = (chi - i + 12) % 12;
-			return hoangDao[result];
-		} else
-			return -1;
 	}
 
 	public static int[] gioHoangDao(DayMonthYear dmy) {
@@ -943,38 +905,10 @@ public class Lunar {
 
 		int month;
 
-		int[] co = new int[2];
 		int[] hu = new int[2];
 
-		int coHuSatMen = (can(dmyMen)[2] - chi(dmyMen)[2] + 12) % 12;
+		int co = (22 - (can(dmyMen)[2] - chi(dmyMen)[2] + 12) % 12) % 12;
 		int coHuSatWoman = (can(dmyWoman)[2] - chi(dmyWoman)[2] + 12) % 12;
-
-		switch (coHuSatMen) {
-		case 0:
-			co[0] = 9;
-			co[1] = 10;
-			break;
-		case 2:
-			co[0] = 7;
-			co[1] = 8;
-			break;
-		case 4:
-			co[0] = 5;
-			co[1] = 6;
-			break;
-		case 6:
-			co[0] = 3;
-			co[1] = 4;
-			break;
-		case 8:
-			co[0] = 1;
-			co[1] = 2;
-			break;
-		case 10:
-			co[0] = 11;
-			co[1] = 12;
-			break;
-		}
 
 		switch (coHuSatWoman) {
 		case 0:
@@ -1005,7 +939,7 @@ public class Lunar {
 
 		for (int i = 0; i < result.size(); i++) {
 			month = solar2Lunar(result.get(i)).getMonth();
-			if (month == co[0] || month == co[1] || month == hu[0]
+			if (month == co || month == co - 1 || month == hu[0]
 					|| month == hu[1]) {
 				result.remove(i);
 			}
@@ -1018,83 +952,8 @@ public class Lunar {
 		int chiWoman = chi(dmyWoman)[2];
 		int[] y = new int[2];
 
-		switch (chiMen) {
-		case 0:
-			y[0] = 7;
-			break;
-		case 1:
-			y[0] = 8;
-			break;
-		case 2:
-			y[0] = 9;
-			break;
-		case 3:
-			y[0] = 10;
-			break;
-		case 4:
-			y[0] = 11;
-			break;
-		case 5:
-			y[0] = 0;
-			break;
-		case 6:
-			y[0] = 1;
-			break;
-		case 7:
-			y[0] = 2;
-			break;
-		case 8:
-			y[0] = 3;
-			break;
-		case 9:
-			y[0] = 4;
-			break;
-		case 10:
-			y[0] = 5;
-			break;
-		case 11:
-			y[0] = 6;
-			break;
-		}
-
-		switch (chiWoman) {
-		case 0:
-			y[1] = 3;
-			break;
-		case 1:
-			y[1] = 2;
-			break;
-		case 2:
-			y[1] = 1;
-			break;
-		case 3:
-			y[1] = 0;
-			break;
-		case 4:
-			y[1] = 11;
-			break;
-		case 5:
-			y[1] = 10;
-			break;
-		case 6:
-			y[1] = 9;
-			break;
-		case 7:
-			y[1] = 8;
-			break;
-		case 8:
-			y[1] = 7;
-			break;
-		case 9:
-			y[1] = 6;
-			break;
-		case 10:
-			y[1] = 5;
-			break;
-		case 11:
-			y[1] = 4;
-			break;
-		}
+		y[0] = (chiMen + 7) % 12;
+		y[1] = (15 - chiWoman) % 12;
 
 		return y;
 	}
@@ -1154,8 +1013,8 @@ public class Lunar {
 		ngayXau(ret);
 		coHuSat(ret, dmyMen, dmyWoman);
 		sortResult(ret);
-		
-		y= namXau(dmyMen, dmyWoman);
+
+		y = namXau(dmyMen, dmyWoman);
 		for (int i = dmy1.getYear(); i < dmy1.getYear() + 11; i++) {
 			int chiNam = chi(new DayMonthYear(5, 5, i))[2];
 			if (chiNam == y[0] || chiNam == y[1]) {
@@ -1164,87 +1023,5 @@ public class Lunar {
 		}
 
 		return ret;
-	}
-
-	/*----------MAIN-------------*/
-
-	public static void main(String[] args) {
-
-		// System.out.print("\nNgay duong -> ngay am:\t");
-		// result = solar2Lunar(D, M, Y);
-		// for (int i = 0; i < 4; i++)
-		// System.out.print(result[i] + "\t");
-
-		// System.out.print("\nNgay am -> ngay duong:\t");
-		// result = lunar2Solar(1, 1, 2015, 0);
-		// for (int i = 0; i < 3; i++)
-		// System.out.print(result);[i] + "\t"
-
-		// System.out.print("\nCan chi:\n");
-		// int[] can = can(D, M, Y);
-		// int[] chi = chi(D, M, Y);
-		// System.out.println("ngay:\t" + CAN[can[0]] + "\t" + CHI[chi[0]]);
-		// System.out.println("thang:\t" + CAN[can[1]] + "\t" + CHI[chi[1]]);
-		// System.out.println("nam:\t" + CAN[can[2]] + "\t" + CHI[chi[2]]);
-		//
-		// System.out.println("\n" + THU[thu(D, M, Y)]);
-		// if (ngayHoangDao(D, M, Y) == 1) {
-		// System.out.println("Ngay hoang dao");
-		// } else {
-		// System.out.println("Ngay hac dao");
-		// }
-		//
-		// System.out.println("Gio hoang dao:");
-		// for (int i = 0; i < 6; i++) {
-		// System.out.println(CHI[gioHoangDao(D, M, Y)[i]] + "\t"
-		// + GIO[gioHoangDao(D, M, Y)[i]]);
-		// }
-
-		// for (int i = 0; i < 13; i++) {
-		// System.out.print("\n");
-		// for (int j = 0; j < 5; j++)
-		// System.out.print(lunarYear(2014)[i][j] + "\t");
-		// }
-
-		// System.out.println(SunLongitude(LocalToJD(5, 4, 2015)));
-		// System.out.println(SUNLONG_MAJOR[5]);
-
-		// for (int i = 0; i < 24; i++) {
-		// System.out.println();
-		// for (int j = 0; j < 2; j++)
-		// System.out.print(tietKhiMoc(2015)[i][j] + "\t");
-		// }
-
-		// result = null;
-		// result = saoTot(D, M, Y);
-		// System.out.print("\nSao tot:\t");
-		// for (int i = 0; i < countSaoTot; i++) {
-		// System.out.print(SAOTOT[result[i]] + "\t");
-		// }
-		//
-		// result = null;
-		// result = saoXau(D, M, Y);
-		// System.out.print("\nSao xau:\t");
-		// for (int i = 0; i < countSaoXau; i++) {
-		// System.out.print(SAOXAU[result[i]] + "\t\t");
-		// }
-		//
-		// System.out.print("\n\nNhi thap bat tu:\t");
-		// System.out.println(SAO[nhiThapBatTu(D, M, Y)]);
-		// System.out.print("\nTiet khi:\t");
-		// System.out.println(TIETKHI[tietKhi(D, M, Y)]);
-		//
-		// System.out.print("\nTruc:\t");
-		//
-		// System.out.println(TRUC[truc(D, M, Y)]);
-		// sunLongitude(localToJD(4, 4, 2009));
-
-		ArrayList<DayMonthYear> a = cuoiGa(new DayMonthYear(11, 1, 2015),
-				new DayMonthYear(1, 12, 2016), new DayMonthYear(24, 11, 1993), new DayMonthYear(4, 9, 1995));
-		for (int i = 0; i < a.size(); i++) {
-			a.get(i).printInfo();
-
-		}
-
 	}
 }
